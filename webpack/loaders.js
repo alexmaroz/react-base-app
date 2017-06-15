@@ -1,6 +1,6 @@
 module.exports = {
   tsLoader: {
-    test: /\.ts(x)?$/,
+    test: /\.tsx?$/,
     use: 'awesome-typescript-loader'
   },
 
@@ -8,9 +8,14 @@ module.exports = {
     test: /\.css$/,
     use: ['style-loader', 'css-loader']
   },
-  
+
   scssLoader: {
     test: /\.scss$/,
     use: ['style-loader', 'css-loader', 'sass-loader']
+  },
+
+  hotLoader: {
+    test: /\.tsx?$/,
+    loaders: ['react-hot-loader/webpack']
   }
 }

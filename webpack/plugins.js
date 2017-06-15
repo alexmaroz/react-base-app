@@ -23,6 +23,8 @@ const getPlugins = () => {
         warnings: false
       }
     }));
+  } else {
+    plugins.push(new webpack.HotModuleReplacementPlugin());
   }
 
   return plugins;
