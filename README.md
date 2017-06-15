@@ -1,2 +1,2 @@
 # react-base-app
-Initial react app with webpack 2
+Initial react app with Webpack 2 and Typescript
