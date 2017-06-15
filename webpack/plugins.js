@@ -10,7 +10,11 @@ const getPlugins = () => {
   let plugins = [
     new CheckerPlugin(),
     new ProgressBarPlugin(),
-    new HtmlWebpackPlugin()
+    new webpack.optimize.CommonsChunkPlugin({ name: 'common', filename: `${config.jsOutput}/common.bundle${config.isProd() ? '.[chunkhash].min' : ''}.js` }),
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: config.appHtml,
+    })
   ];
 
   if (config.isProd()) {

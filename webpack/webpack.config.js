@@ -9,12 +9,14 @@ const package = require('../package.json');
 const packagesToIncludeNames = Object.keys(package.dependencies);
 
 module.exports = {
+  bail: true,
+  devtool: config.isProd() ? 'source-map' : 'cheap-module-source-map',
   entry: {
     app: './src/index.ts',
     vendors: packagesToIncludeNames
   },
   output: {
-    filename: '[name].bundle.[hash].js',
+    filename: `${config.jsOutput}/[name].bundle${config.isProd() ? '.[chunkhash].min' : ''}.js`,
     path: path.resolve(__dirname, '../', config.outputPath)
   },
   resolve: {

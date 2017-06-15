@@ -18,5 +18,10 @@ module.exports = {
   isProd,
   host,
   port,
-  outputPath
+  outputPath,
+  appHtml: config.appHtml,
+  jsOutput: config.jsOutput,
+  cssOutput: config.cssOutput,
+  fontsOutput: config.fontsOutput,
+  imgOutput: config.imgOutput
 }

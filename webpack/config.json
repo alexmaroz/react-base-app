@@ -1,5 +1,10 @@
 {
   "host": "localhost",
   "port": 3000,
-  "outputPath": "dist"
+  "outputPath": "dist",
+  "appHtml": "public/index.html",
+  "jsOutput": "assets/js",
+  "cssOutput": "assets/css",
+  "fontsOutput": "assets/fonts",
+  "imgOutput": "assets/img"
 }
