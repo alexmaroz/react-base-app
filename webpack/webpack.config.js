@@ -1,11 +1,10 @@
-var webpack = require('webpack');
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ProgressBarPlugin = require('progress-bar-webpack-plugin');
-var CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
+const webpack = require('webpack');
+const path = require('path');
 
-var loaders = require('./loaders');
-var package = require('../package.json');
+const loaders = require('./loaders');
+const plugins = require('./plugins');
+const config = require('./config');
+const package = require('../package.json');
 
 const packagesToIncludeNames = Object.keys(package.dependencies);
 
@@ -16,7 +15,7 @@ module.exports = {
   },
   output: {
     filename: '[name].bundle.[hash].js',
-    path: path.resolve(__dirname, '../dist')
+    path: path.resolve(__dirname, '../', config.outputPath)
   },
   resolve: {
     extensions: ['js', 'jsx', 'ts', 'tsx']
@@ -28,14 +27,5 @@ module.exports = {
       loaders.scssLoader
     ]
   },
-  plugins: [
-    new CheckerPlugin(),
-    new ProgressBarPlugin(),
-    new HtmlWebpackPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    })
-  ]
+  plugins: plugins.getPlugins()
 };
