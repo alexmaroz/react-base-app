@@ -15,8 +15,7 @@ let configObj = {
   bail: true,
   devtool: config.isProd() ? 'source-map' : 'cheap-module-source-map',
   entry: {
-    app: [`webpack-dev-server/client?${config.clientServerUri}`,
-      'webpack/hot/only-dev-server', './src/index.ts'],
+    app: './src/index.ts',
     vendors: packagesToIncludeNames
   },
   output: {
@@ -24,7 +23,17 @@ let configObj = {
     path: path.resolve(__dirname, '../', config.outputPath),
     // publicPath: '/'
   },
+  devServer: {
+    host: config.host,
+    port: config.port,
+    //contentBase: [config.OUTPUT_PATH, pathPublicDir],
+    historyApiFallback: true
+  },
   resolve: {
+    modules: [
+      path.resolve(path.resolve(__dirname, '..'), 'src'),
+      path.resolve(path.resolve(__dirname, '..'), 'node_modules')
+    ],
     extensions: ['js', 'jsx', 'ts', 'tsx']
   },
   module: {
@@ -37,10 +46,9 @@ let configObj = {
   plugins: plugins.getPlugins()
 };
 
-if (!config.isHmrEnabled()) {
+if (config.isHmrEnabled()) {
   console.log('Inside');
   configObj = merge(
-    configObj,
     {
       entry: {
         app: [
@@ -49,7 +57,12 @@ if (!config.isHmrEnabled()) {
         ]
       }
     },
-
+    configObj,
+    {
+      plugins: [
+        new webpack.HotModuleReplacementPlugin()
+      ]
+    },
     {
       module: {
         loaders: [
