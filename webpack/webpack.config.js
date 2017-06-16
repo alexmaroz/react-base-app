@@ -15,7 +15,7 @@ let configObj = {
   bail: true,
   devtool: config.isProd() ? 'source-map' : 'cheap-module-source-map',
   entry: {
-    app: './src/index.ts',
+    app: './src/index.tsx',
     vendors: packagesToIncludeNames
   },
   output: {
