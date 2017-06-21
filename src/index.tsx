@@ -1,6 +1,5 @@
-// import _ from 'lodash';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { App } from './App';
 
-export const TestModule = () => {
-  // console.log(_.join(['Hello', 'webpack2'], ' '));
-  console.log('Hello webpack2');
-};
+ReactDOM.render(<App />, document.getElementById('root'));

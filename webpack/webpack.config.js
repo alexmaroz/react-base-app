@@ -12,6 +12,7 @@ const packagesToIncludeNames = Object.keys(package.dependencies);
 console.log(process.env.PORT);
 
 let configObj = {
+  context: path.resolve(__dirname, '..'),
   bail: true,
   devtool: config.isProd() ? 'source-map' : 'cheap-module-source-map',
   entry: {
@@ -30,14 +31,15 @@ let configObj = {
   },
   resolve: {
     modules: [
-      path.resolve(path.resolve(__dirname, '..'), 'src'),
-      path.resolve(path.resolve(__dirname, '..'), 'node_modules')
+      path.resolve(__dirname, './src'),
+      path.resolve(__dirname, '../node_modules/')
     ],
-    extensions: ['js', 'jsx', 'ts', 'tsx']
+    extensions: ['*', '.js', '.jsx', '.ts', '.tsx', '.json']
   },
   module: {
     rules: [
       loaders.tsLoader,
+      loaders.sourceMapLoader,
       loaders.cssLoader,
       loaders.scssLoader
     ]

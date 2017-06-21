@@ -1,7 +1,14 @@
 module.exports = {
   tsLoader: {
-    test: /\.tsx?$/,
-    use: 'awesome-typescript-loader'
+    test: /\.(t|j)sx?$/,
+    use: 'awesome-typescript-loader',
+    exclude: /node_modules/
+  },
+
+  sourceMapLoader: {
+    enforce: "pre",
+    test: /\.js$/,
+    loader: "source-map-loader"
   },
 
   cssLoader: {
