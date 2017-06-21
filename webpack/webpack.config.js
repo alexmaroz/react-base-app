@@ -15,8 +15,7 @@ let configObj = {
   bail: true,
   devtool: config.isProd() ? 'source-map' : 'cheap-module-source-map',
   entry: {
-    app: './src/index.tsx',
-    vendors: packagesToIncludeNames
+    app: './src/index.tsx'
   },
   output: {
     filename: `${config.jsOutput}/[name].bundle${config.isProd() ? '.[chunkhash].min' : ''}.js`,
